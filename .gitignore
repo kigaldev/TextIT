@@ -1,0 +1,25 @@
+# Dependencias
+node_modules/
+package-lock.json
+
+# Archivos de construcción
+dist/
+build/
+.next/
+
+# Archivos de entorno
+.env
+.env.*
+
+# Archivos de editor
+.vscode/
+.idea/
+
+# Archivos de sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de registros y caché
+*.log
+*.swp
+*.swo
