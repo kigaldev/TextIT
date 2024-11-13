@@ -16,7 +16,7 @@
 
 ## Descripción
 
-El **Editor de Texto** es una aplicación diseñada para brindar a los usuarios una experiencia de edición de texto intuitiva y eficiente. Con su interfaz gráfica de usuario (GUI), permite a los usuarios abrir, editar, formatear y guardar documentos de texto de manera sencilla.
+El **TextIT** es una aplicación diseñada para brindar a los usuarios una experiencia de edición de texto intuitiva y eficiente. Con su interfaz gráfica de usuario (GUI), permite a los usuarios abrir, editar, formatear y guardar documentos de texto de manera sencilla.
 
 ## Características
 
@@ -30,7 +30,7 @@ El **Editor de Texto** es una aplicación diseñada para brindar a los usuarios 
 
 1. Clona el repositorio:
 
-git clone https://github.com/tu-usuario/editor-de-texto.git
+git clone https://github.com/kigaldev/TextIT
 
 2. Navega al directorio del proyecto:
 
