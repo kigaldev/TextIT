@@ -15,7 +15,6 @@ const App = () => {
         <TextEditor />
       </main>
       <footer className="app-footer">
-        <StatusBar charCount={0} wordCount={0} />
       </footer>
     </div>
   );
