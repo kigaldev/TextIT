@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const FileMenu = () => {
+const FileMenu = ({ fileName, setFileName, editorContent, setEditorContent }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -8,28 +8,49 @@ const FileMenu = () => {
   };
 
   const handleNew = () => {
-    // Lógica para crear un nuevo archivo
-    console.log('Nueva acción');
+    setFileName('');
+    setEditorContent('');
   };
 
   const handleOpen = () => {
-    // Lógica para abrir un archivo
-    console.log('Abrir acción');
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.addEventListener('change', (event) => {
+      const file = event.target.files[0];
+      setFileName(file.name);
+      readFileContent(file);
+    });
+    fileInput.click();
+  };
+
+  const readFileContent = (file) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      setEditorContent(reader.result);
+    };
+    reader.readAsText(file);
   };
 
   const handleSave = () => {
-    // Lógica para guardar un archivo
-    console.log('Guardar acción');
+    saveFile(fileName || 'sin_título.txt', editorContent);
   };
 
   const handleSaveAs = () => {
-    // Lógica para guardar un archivo como
-    console.log('Guardar como acción');
+    const newFileName = prompt('Ingresa un nombre de archivo:');
+    if (newFileName) {
+      setFileName(newFileName);
+      saveFile(newFileName, editorContent);
+    }
   };
 
-  const handleClose = () => {
-    // Lógica para cerrar el archivo
-    console.log('Cerrar acción');
+  const saveFile = (name, content) => {
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.download = name;
+    link.href = url;
+    link.click();
+    URL.revokeObjectURL(url);
   };
 
   return (
@@ -42,20 +63,29 @@ const FileMenu = () => {
       </button>
       {isOpen && (
         <ul className="absolute top-full left-0 bg-white border border-gray-300 rounded-md shadow-lg mt-2 w-40">
-          <li className="hover:bg-gray-100 px-4 py-2 cursor-pointer" onClick={handleNew}>
+          <li
+            className="hover:bg-gray-100 px-4 py-2 cursor-pointer"
+            onClick={handleNew}
+          >
             Nuevo
           </li>
-          <li className="hover:bg-gray-100 px-4 py-2 cursor-pointer" onClick={handleOpen}>
+          <li
+            className="hover:bg-gray-100 px-4 py-2 cursor-pointer"
+            onClick={handleOpen}
+          >
             Abrir
           </li>
-          <li className="hover:bg-gray-100 px-4 py-2 cursor-pointer" onClick={handleSave}>
+          <li
+            className="hover:bg-gray-100 px-4 py-2 cursor-pointer"
+            onClick={handleSave}
+          >
             Guardar
           </li>
-          <li className="hover:bg-gray-100 px-4 py-2 cursor-pointer" onClick={handleSaveAs}>
+          <li
+            className="hover:bg-gray-100 px-4 py-2 cursor-pointer"
+            onClick={handleSaveAs}
+          >
             Guardar como
-          </li>
-          <li className="hover:bg-gray-100 px-4 py-2 cursor-pointer" onClick={handleClose}>
-            Cerrar
           </li>
         </ul>
       )}

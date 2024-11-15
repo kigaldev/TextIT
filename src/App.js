@@ -1,21 +1,52 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TextEditor from './components/TextEditor';
 import Toolbar from './components/Toolbar';
 import FileMenu from './components/FileMenu';
-import StatusBar from './components/StatusBar';
 
 const App = () => {
+  const [fileName, setFileName] = useState('');
+  const [editorContent, setEditorContent] = useState('');
+
+  const handleNew = () => {
+    setFileName('');
+    setEditorContent('');
+  };
+
+  const handleOpen = () => {
+    // Lógica para abrir un archivo
+  };
+
+  const handleSave = () => {
+    // Lógica para guardar un archivo
+  };
+
+  const handleSaveAs = () => {
+    // Lógica para guardar un archivo como
+  };
+
   return (
     <div className="app-container">
       <header className="app-header">
-        <FileMenu />
-        <Toolbar />
+        <FileMenu
+          fileName={fileName}
+          setFileName={setFileName}
+          editorContent={editorContent}
+          setEditorContent={setEditorContent}
+        />
+        <Toolbar
+          handleNew={handleNew}
+          handleOpen={handleOpen}
+          handleSave={handleSave}
+          handleSaveAs={handleSaveAs}
+        />
       </header>
       <main className="app-main">
-        <TextEditor />
+        <TextEditor
+          fileName={fileName}
+          editorContent={editorContent}
+          setEditorContent={setEditorContent}
+        />
       </main>
-      <footer className="app-footer">
-      </footer>
     </div>
   );
 };
